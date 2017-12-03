@@ -1,0 +1,5 @@
+#include "../graphs/graph.h"
+int main()
+{
+	return 0;
+}
