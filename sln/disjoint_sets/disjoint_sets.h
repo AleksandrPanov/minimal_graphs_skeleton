@@ -1,10 +1,25 @@
 #pragma once
+#include <vector>
+struct node
+{
+	int rank;
+	int parent;
+	node(){}
+};
 class DisjoinSet
 {
 private:
-	//struct
+	std::vector <node> tree;
+	int numSet = 0;
 public:
-	int create(int x);
-	int find(int x);
-	void doUnion(int a, int b);
+	DisjoinSet(){}
+	DisjoinSet(int size);
+	int getSize() { return tree.size(); }
+	int getNumSet() { return numSet; }
+	void make_set(int v);
+
+	int find_set(int v);
+
+	void union_sets(int a, int b);
+	
 };
