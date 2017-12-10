@@ -3,16 +3,15 @@
 struct Node
 {
 	int v;
-	Node *parent;
+	Node *parent = 0;
 	std::vector<Node *> child;
-
-	~Node()	{}
 };
 class Tree : public Graph
 {
 protected:
-	Node node;
+	Node head;
 public:
 	Tree();
+	void deleteNodes(Node *node);
 	~Tree();
 };

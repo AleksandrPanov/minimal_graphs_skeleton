@@ -135,6 +135,14 @@
   <ItemGroup>
     <ClCompile Include="alg_kraskal.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\disjoint_sets\disjoint_sets.vcxproj">
+      <Project>{14d0e3f6-6b6a-4cc3-9fc9-03876c373cf1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\graphs\graphs.vcxproj">
+      <Project>{9a9b9d5a-ae21-4803-a70c-f878245c1470}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
