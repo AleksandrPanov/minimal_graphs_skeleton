@@ -4,6 +4,19 @@ Tree::Tree()
 {
 }
 
+Tree::Tree(int v)
+{
+	n = 1;
+	head.v = v;
+}
+
+void Tree::unionTrees(Tree & tree)
+{
+	head.child.push_back(&tree.head);
+	tree.head.parent = &head;
+	n += tree.n;
+}
+
 void Tree::deleteNodes(Node * node)
 {
 	//delete node->parent;

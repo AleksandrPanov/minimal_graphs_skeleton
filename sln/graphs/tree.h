@@ -2,7 +2,7 @@
 #include "graph.h" 
 struct Node
 {
-	int v;
+	int v = -1;
 	Node *parent = 0;
 	std::vector<Node *> child;
 };
@@ -12,6 +12,8 @@ protected:
 	Node head;
 public:
 	Tree();
+	Tree(int v);
+	void unionTrees(Tree &tree);
 	void deleteNodes(Node *node);
 	~Tree();
 };
