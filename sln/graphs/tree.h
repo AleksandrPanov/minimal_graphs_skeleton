@@ -15,5 +15,6 @@ public:
 	Tree(int v);
 	void unionTrees(Tree &tree);
 	void deleteNodes(Node *node);
+	std::vector<std::pair<int, int>> getEdges() override;
 	~Tree();
 };

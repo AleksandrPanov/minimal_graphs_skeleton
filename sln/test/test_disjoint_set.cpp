@@ -1,6 +1,5 @@
 #include "../../gtest/gtest/gtest.h"
 #include "../disjoint_sets/disjoint_sets.h"
-#include <iostream>
 TEST(disjoint_sets, can_create_correctly)
 {
 	DisjoinSet set(10);
