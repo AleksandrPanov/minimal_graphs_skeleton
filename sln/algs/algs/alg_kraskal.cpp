@@ -6,10 +6,13 @@
 #define v1 second.first
 #define v2 second.second
 
-vector<Tree*>& algKraskal(Edges & edges, int n)
+using std::vector;
+using std::pair;
+
+void algKraskal(EdgesWeight & edges, int n, vector<Tree*> &trees)
 {
 	DisjoinSet set(n);
-	vector<Tree*> trees(n);
+	trees = vector<Tree*>(n);
 	for (int i = 0; i < n; i++)
 		trees[i] = new Tree(i);
 	std::sort(edges.begin(), edges.end());
@@ -25,5 +28,4 @@ vector<Tree*>& algKraskal(Edges & edges, int n)
 			trees[nameSet2] = 0;
 		}
 	}
-	return std::move(trees);
 }

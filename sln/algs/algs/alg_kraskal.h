@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-using std::vector;
-using std::pair;
-typedef vector<pair<int, pair<int, int>>> Edges;
-void algKraskal(Edges &edges);
+class Tree;
+typedef std::vector<std::pair<int, std::pair<int, int>>> EdgesWeight;
+void algKraskal(EdgesWeight & edges, int n, std::vector<Tree*> &trees);

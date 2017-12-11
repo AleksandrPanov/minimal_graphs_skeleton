@@ -1,11 +1,12 @@
 #include "graph.h"
 #include <fstream>
+
 int Graph::getSize() const
 {
 	return n;
 }
 
-void Graph::printEdges(std::ofstream & of, std::vector<std::pair<int, int>>& edges)
+void Graph::printEdges(std::ofstream & of, Edges& edges)
 {
 	for (auto &edge : edges)
 	{
@@ -13,7 +14,7 @@ void Graph::printEdges(std::ofstream & of, std::vector<std::pair<int, int>>& edg
 	}
 }
 
-void Graph::printEdges(std::ostream & os, std::vector<std::pair<int, int>>& edges)
+void Graph::printEdges(std::ostream & os, Edges& edges)
 {
 	for (auto &edge : edges)
 	{
