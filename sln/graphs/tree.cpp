@@ -54,5 +54,5 @@ vector<pair<int, int>> Tree::getEdges()
 
 Tree::~Tree()
 {
-	//deleteNodes(&head);
+
 }
