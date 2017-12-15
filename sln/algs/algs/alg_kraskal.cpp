@@ -9,12 +9,10 @@
 using std::vector;
 using std::pair;
 
-void algKraskal(EdgesWeight & edges, int n, vector<Tree*> &trees)
+Tree algKraskal(EdgesWeight &edges, int n)
 {
 	DisjoinSet set(n);
-	trees = vector<Tree*>(n);
-	for (int i = 0; i < n; i++)
-		trees[i] = new Tree(i);
+	Tree tree(n);
 	std::sort(edges.begin(), edges.end());
 	for (int i = 0; i < edges.size(); i++)
 	{
@@ -24,8 +22,8 @@ void algKraskal(EdgesWeight & edges, int n, vector<Tree*> &trees)
 		if (nameSet1 != nameSet2)
 		{
 			set.union_sets(edge.v1, edge.v2);
-			trees[nameSet1]->unionTrees(*trees[nameSet2]);
-			trees[nameSet2] = 0;
+			tree.unionRoots(nameSet1, nameSet2);
 		}
 	}
+	return tree;
 }

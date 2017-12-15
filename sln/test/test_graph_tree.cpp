@@ -4,35 +4,37 @@
 using std::cout;
 using std::pair;
 using std::ofstream;
-void setTree(Tree &t0, Tree &t1, Tree &t2, Tree &t3)
+Tree getTree()
 {
-	t0.unionTrees(t1);
-	t0.unionTrees(t2);
-	t2.unionTrees(t3);
+	Tree tree(5);
+	tree.unionRoots(1, 0);
+	tree.unionRoots(1, 2);
+	tree.unionRoots(3, 4);
+	tree.unionRoots(1, 3);
+	return tree;
 }
 TEST(graph_tree, can_create_correctly)
 {
-	Tree t(0);
+	Tree t(1);
 	EXPECT_EQ(t.getSize(), 1);
+	EXPECT_EQ(t.getRoot(), 0);
 	EXPECT_EQ(t.getEdges().size(), 0);
 }
 
 TEST(graph_tree, can_union_correctly)
 {
-	Tree t0(0), t1(1), t2(2), t3(3);
-	setTree(t0, t1, t2, t3);
-	//EXPECT_EQ(t0.getSize(), 4);
-	std::vector<pair<int, int>> edges = t0.getEdges();
-	EXPECT_EQ(edges.size(), 3);
-	auto t = edges[0];
-	auto res = pair<int, int>(0, 1);
-	EXPECT_EQ(t, res);
+	Tree tree = getTree();
+	EXPECT_EQ(tree.getRoot(), 1);
+	EXPECT_EQ(tree.getNode(1).leftChild, 3);
+	EXPECT_EQ(tree.getNode(3).parent, 1);
+	EXPECT_EQ(tree.getNode(3).rightBrother, 2);
+	EXPECT_EQ(tree.getNode(2).rightBrother, 0);
+	EXPECT_EQ(tree.getNode(3).leftChild, 4);
 }
 
 TEST(graph_tree, can_print)
 {
-	Tree t0(0), t1(1), t2(2), t3(3);
-	setTree(t0, t1, t2, t3);
-	std::vector<pair<int, int>> edges = t0.getEdges();
+	Tree tree = getTree();
+	std::vector<pair<int, int>> edges = tree.getEdges();
 	Graph::printEdges(std::cout, edges);
 }

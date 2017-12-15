@@ -1,58 +1,33 @@
 #include "tree.h"
+#include <queue>
+using std::queue;
 using std::vector;
 using std::pair;
-Tree::Tree()
+
+void Tree::unionRoots(int v1, int v2)
 {
+	nodes[v2].parent = v1;
+	nodes[v2].rightBrother = nodes[v1].leftChild;
+	nodes[v1].leftChild = v2;
+	if (root == v2) root = v1;
 }
 
-Tree::Tree(int v)
+Edges Tree::getEdges()
 {
-	n = 1;
-	head.v = v;
-}
-
-void Tree::unionTrees(Tree & tree)
-{
-	head.child.push_back(&tree.head);
-	tree.head.parent = &head;
-	n += tree.n;
-}
-
-void Tree::deleteNodes(Node *node)
-{
-	//delete node->parent;
-	if (node != 0)
+	Edges edges(n-1);
+	queue<int> q;
+	q.push(root);
+	int i = 0;
+	while (!q.empty())
 	{
-		for (int i = 0; i < node->child.size(); i++)
+		int v = q.front(), child = nodes[v].leftChild;
+		while (child != -1)
 		{
-			if (node->child[i] != 0)
-			{
-				deleteNodes(node->child[i]);
-				delete  node->child[i];
-				node->child[i] = 0;
-			}
+			edges[i++] = Edge(v, child);
+			q.push(child);
+			child = nodes[child].rightBrother;
 		}
-		node = 0;
+		q.pop();
 	}
-}
-
-void pushEdges(Node *node, vector<pair<int, int>>& edges)
-{
-	for (int i = 0; i < node->child.size(); i++)
-	{
-		edges.push_back(pair<int, int>(node->v, node->child[i]->v));
-		pushEdges(node->child[i], edges);
-	}
-}
-
-vector<pair<int, int>> Tree::getEdges()
-{
-	vector<pair<int, int>> edges;
-	pushEdges(&head, edges);
-	return std::move(edges);
-}
-
-Tree::~Tree()
-{
-
+	return edges;
 }
