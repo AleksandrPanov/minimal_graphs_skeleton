@@ -22,4 +22,5 @@ TEST(alg_kraskal, alg_kraskal_work1)
 	int n;
 	auto graph = getGraph(n);
 	auto ansTree = algKraskal(graph, n);
+	Tree::printEdges(std::cout, ansTree.getEdges());
 }

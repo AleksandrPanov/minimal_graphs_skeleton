@@ -5,6 +5,7 @@ struct Node
 	int parent = -1;
 	int leftChild = -1;
 	int rightBrother = -1;
+	int weight = -1;
 };
 class Tree : public Graph
 {
@@ -18,8 +19,8 @@ public:
 		this->n = n;
 		nodes = std::vector<Node>(n);
 	}
-	void unionRoots(int v1, int v2);
+	void unionRoots(int v1, int v2, int w);
 	int getRoot() const { return root; }
 	Node getNode(int i) const { return nodes[i]; }
-	Edges getEdges() override;
+	EdgesWeight getEdges() override;
 };

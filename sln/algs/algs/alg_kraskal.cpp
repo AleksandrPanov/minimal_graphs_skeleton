@@ -22,7 +22,7 @@ Tree algKraskal(EdgesWeight &edges, int n)
 		if (nameSet1 != nameSet2)
 		{
 			set.union_sets(edge.v1, edge.v2);
-			tree.unionRoots(nameSet1, nameSet2);
+			tree.unionRoots(nameSet1, nameSet2, edge.first);
 		}
 	}
 	return tree;

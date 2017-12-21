@@ -7,10 +7,10 @@ using std::ofstream;
 Tree getTree()
 {
 	Tree tree(5);
-	tree.unionRoots(1, 0);
-	tree.unionRoots(1, 2);
-	tree.unionRoots(3, 4);
-	tree.unionRoots(1, 3);
+	tree.unionRoots(1, 0, -1);
+	tree.unionRoots(1, 2, -1);
+	tree.unionRoots(3, 4, -1);
+	tree.unionRoots(1, 3, -1);
 	return tree;
 }
 TEST(graph_tree, can_create_correctly)
@@ -35,6 +35,6 @@ TEST(graph_tree, can_union_correctly)
 TEST(graph_tree, can_print)
 {
 	Tree tree = getTree();
-	std::vector<pair<int, int>> edges = tree.getEdges();
+	EdgesWeight edges = tree.getEdges();
 	Graph::printEdges(std::cout, edges);
 }

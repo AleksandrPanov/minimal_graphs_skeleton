@@ -6,18 +6,19 @@ int Graph::getSize() const
 	return n;
 }
 
-void Graph::printEdges(std::ofstream & of, Edges& edges)
+void Graph::printEdges(std::ofstream & of, EdgesWeight& edges)
 {
 	for (auto &edge : edges)
 	{
-		of << edge.first << ' ' << edge.second << '\n';
+		of << edge.second.first << ' ' << edge.second.second << ' '<<edge.first<< '\n';
 	}
 }
 
-void Graph::printEdges(std::ostream & os, Edges& edges)
+void Graph::printEdges(std::ostream & os, EdgesWeight& edges)
 {
 	for (auto &edge : edges)
 	{
-		os << edge.first << ' ' << edge.second << '\n';
+		os << edge.second.first << ' ' << edge.second.second << ' ' << edge.first << '\n';
 	}
 }
+
