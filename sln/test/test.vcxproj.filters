@@ -24,7 +24,7 @@
     <ClCompile Include="test_graph_tree.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="test_alg_kraskal.cpp">
+    <ClCompile Include="test_algs.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

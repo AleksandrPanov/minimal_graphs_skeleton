@@ -1,9 +1,11 @@
 #include "../../gtest/gtest/gtest.h"
 #include "../algs/algs/alg_kraskal.h"
-#include "../graphs/tree.h"
+#include "../algs/algs/alg_prima.h"
+#include "../graphs/graph.h"
 using std::pair;
-typedef pair<int, pair<int,int>> EdgeWeight;
-typedef pair<int, int> Edge;
+using std::vector;
+typedef std::pair<int, int> Edge;
+typedef std::pair<int, std::pair<int, int>> EdgeWeight;
 EdgesWeight getGraph(int &n)
 {
 	n = 6;
@@ -21,6 +23,15 @@ TEST(alg_kraskal, alg_kraskal_work1)
 {
 	int n;
 	auto graph = getGraph(n);
-	auto ansTree = algKraskal(graph, n);
-	Tree::printEdges(std::cout, ansTree.getEdges());
+	auto ansEdges = algKraskal(graph, n);
+	Graph::printEdges(std::cout, ansEdges);
+}
+
+TEST(alg_prima, alg_prima_work1)
+{
+	int n;
+	auto graph = getGraph(n);
+	vector<vector<int>> g = Graph::getAdjacencyMatrixFromEdges(graph, n);
+	auto ansEdges = algPrima(g,n);
+	Graph::printEdges(std::cout, ansEdges);
 }

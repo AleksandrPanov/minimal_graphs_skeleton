@@ -1,18 +1,21 @@
 #include "alg_kraskal.h"
 #include "../../disjoint_sets/disjoint_sets.h"
-#include "../../graphs/tree.h"
 #include <algorithm>
-
 #define v1 second.first
 #define v2 second.second
+#define w first
 
 using std::vector;
 using std::pair;
 
-Tree algKraskal(EdgesWeight &edges, int n)
+typedef std::pair<int, int> Edge;
+typedef std::pair<int, std::pair<int, int>> EdgeWeight;
+
+EdgesWeight algKraskal(EdgesWeight &edges, int n)
 {
 	DisjoinSet set(n);
-	Tree tree(n);
+	EdgesWeight result;
+	result.reserve(n - 1);
 	std::sort(edges.begin(), edges.end());
 	for (int i = 0; i < edges.size(); i++)
 	{
@@ -22,8 +25,8 @@ Tree algKraskal(EdgesWeight &edges, int n)
 		if (nameSet1 != nameSet2)
 		{
 			set.union_sets(edge.v1, edge.v2);
-			tree.unionRoots(nameSet1, nameSet2, edge.first);
+			result.push_back(EdgeWeight(edge.w, Edge(edge.v1, edge.v2)));
 		}
 	}
-	return tree;
+	return result;
 }

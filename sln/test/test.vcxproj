@@ -142,7 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="test_alg_kraskal.cpp" />
+    <ClCompile Include="test_algs.cpp" />
     <ClCompile Include="test_disjoint_set.cpp" />
     <ClCompile Include="test_graph_tree.cpp" />
     <ClCompile Include="test_main.cpp" />

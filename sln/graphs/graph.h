@@ -3,8 +3,6 @@
 
 typedef std::vector<std::pair<int, int>> Edges;
 typedef std::vector<std::pair<int, std::pair<int, int>>> EdgesWeight;
-typedef std::pair<int, int> Edge;
-typedef std::pair<int, std::pair<int, int>> EdgeWeight;
 
 class Graph
 {
@@ -13,7 +11,7 @@ protected:
 public:
 	int getSize() const;
 	virtual EdgesWeight getEdges() { return EdgesWeight(); }
-
+	static std::vector<std::vector<int>> getAdjacencyMatrixFromEdges(EdgesWeight &edgesWeight, int n);
 	static void printEdges(std::ofstream &of, EdgesWeight& edges);
 	static void printEdges(std::ostream &os, EdgesWeight& edges);
 };

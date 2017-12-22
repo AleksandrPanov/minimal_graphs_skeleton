@@ -3,6 +3,8 @@
 using std::queue;
 using std::vector;
 using std::pair;
+typedef std::pair<int, int> Edge;
+typedef std::pair<int, std::pair<int, int>> EdgeWeight;
 
 void Tree::unionRoots(int v1, int v2, int w)
 {
@@ -33,3 +35,4 @@ EdgesWeight Tree::getEdges()
 	}
 	return edges;
 }
+
