@@ -130,10 +130,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="alg_boroute.h" />
     <ClInclude Include="alg_kraskal.h" />
     <ClInclude Include="alg_prima.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="alg_boroute.cpp" />
     <ClCompile Include="alg_kraskal.cpp" />
     <ClCompile Include="alg_prima.cpp" />
   </ItemGroup>

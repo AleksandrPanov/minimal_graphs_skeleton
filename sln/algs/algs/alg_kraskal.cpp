@@ -13,7 +13,7 @@ typedef std::pair<int, std::pair<int, int>> EdgeWeight;
 
 EdgesWeight algKraskal(EdgesWeight &edges, int n)
 {
-	DisjoinSet set(n);
+	DisjointSet set(n);
 	EdgesWeight result;
 	result.reserve(n - 1);
 	std::sort(edges.begin(), edges.end());

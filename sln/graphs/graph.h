@@ -14,4 +14,5 @@ public:
 	static std::vector<std::vector<int>> getAdjacencyMatrixFromEdges(EdgesWeight &edgesWeight, int n);
 	static void printEdges(std::ofstream &of, EdgesWeight& edges);
 	static void printEdges(std::ostream &os, EdgesWeight& edges);
+	static int findWeight(EdgesWeight &edges);
 };

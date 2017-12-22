@@ -2,14 +2,14 @@
 #include "../disjoint_sets/disjoint_sets.h"
 TEST(disjoint_sets, can_create_correctly)
 {
-	DisjoinSet set(10);
+	DisjointSet set(10);
 	EXPECT_EQ(set.getSize(), 10);
 	EXPECT_EQ(set.getNumSet(), 10);
 }
 
 TEST(disjoint_sets, can_union_correctly)
 {
-	DisjoinSet set(10);
+	DisjointSet set(10);
 	set.union_sets(1, 0);
 	EXPECT_EQ(set.getSize(), 10);
 	EXPECT_EQ(set.getNumSet(), 9);
@@ -18,7 +18,7 @@ TEST(disjoint_sets, can_union_correctly)
 
 TEST(disjoint_sets, can_union_all_correctly)
 {
-	DisjoinSet set(10);
+	DisjointSet set(10);
 	for (int i = 1; i < set.getSize(); i++)
 	{
 		set.union_sets(i, i - 1);

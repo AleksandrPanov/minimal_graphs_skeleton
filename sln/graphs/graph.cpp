@@ -35,3 +35,13 @@ void Graph::printEdges(std::ostream & os, EdgesWeight& edges)
 	}
 }
 
+int Graph::findWeight(EdgesWeight & edges)
+{
+	int w = 0;
+	for (auto &edge : edges)
+	{
+		w += edge.first;
+	}
+	return w;
+}
+
