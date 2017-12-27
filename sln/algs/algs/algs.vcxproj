@@ -133,11 +133,13 @@
     <ClInclude Include="alg_boroute.h" />
     <ClInclude Include="alg_kraskal.h" />
     <ClInclude Include="alg_prima.h" />
+    <ClInclude Include="connected_component.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="alg_boroute.cpp" />
     <ClCompile Include="alg_kraskal.cpp" />
     <ClCompile Include="alg_prima.cpp" />
+    <ClCompile Include="connected_component.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\disjoint_sets\disjoint_sets.vcxproj">
