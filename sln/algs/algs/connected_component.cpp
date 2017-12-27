@@ -8,7 +8,7 @@ typedef pair<int, int> Edge;
 typedef pair<int, pair<int, int>> EdgeWeight;
 typedef pair<int, int> v2_w;
 
-void bfs(int v,vector<bool> &was, vector<vector<pair<int, int>>> &adjacencyList, vector<EdgesWeight> &vecComponents)
+EdgesWeight bfs(int v,vector<bool> &was, vector<vector<pair<int, int>>> &adjacencyList)
 {
 	EdgesWeight oneComponet;
 	was[v] = true;
@@ -28,7 +28,7 @@ void bfs(int v,vector<bool> &was, vector<vector<pair<int, int>>> &adjacencyList,
 			}
 		}
 	}
-	vecComponents.push_back(oneComponet);
+	return oneComponet;
 }
 void setAdjacencyList(vector<vector<pair<int, int>>> &adjacencyList, const EdgesWeight & edges, int n)
 {
@@ -36,6 +36,7 @@ void setAdjacencyList(vector<vector<pair<int, int>>> &adjacencyList, const Edges
 	for (auto &edge : edges)
 	{
 		adjacencyList[edge.v1].push_back(v2_w(edge.v2, edge.w));
+		adjacencyList[edge.v2].push_back(v2_w(edge.v1, edge.w));
 	}
 }
 vector<EdgesWeight> getConnectedComponent(const EdgesWeight &edges, int n)
@@ -48,7 +49,8 @@ vector<EdgesWeight> getConnectedComponent(const EdgesWeight &edges, int n)
 	{
 		if (!was[i])
 		{
-			bfs(i, was, adjacencyList, vecComponents);
+			auto comp = bfs(i, was, adjacencyList);
+			vecComponents.push_back(comp);
 		}
 	}
 	vecComponents.shrink_to_fit();
