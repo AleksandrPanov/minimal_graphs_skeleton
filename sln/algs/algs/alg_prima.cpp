@@ -31,7 +31,7 @@ EdgesWeight algPrima(vector<vector<int>> &g, int n)
 		//добавяем мин ребро в ответ, если такое ребро имеется
 		if (sel_edges[v] != -1)
 		{
-			resultEdges.push_back(EdgeWeight(g[v][sel_edges[v]], Edge(v, sel_edges[v])));
+			resultEdges.emplace_back(EdgeWeight(g[v][sel_edges[v]], Edge(v, sel_edges[v])));
 		}
 		//обновляем минимальные ребра
 		for (int to = 0; to < n; ++to)

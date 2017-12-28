@@ -1,7 +1,10 @@
 #include "graph.h"
+#include <random>
 #include <fstream>
 using std::vector;
+using std::pair;
 const int INF = 1000000000;
+typedef pair<int, pair<int, int>> EdgeWeight;
 int Graph::getSize() const
 {
 	return n;
@@ -43,5 +46,37 @@ int Graph::findWeight(EdgesWeight & edges)
 		w += edge.first;
 	}
 	return w;
+}
+
+EdgesWeight Graph::getRandomGraph(int size, int numEdges, int minWeight, int maxWeight)
+{
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dis(1, size*size);
+	std::uniform_int_distribution<> dis_weight(minWeight, maxWeight);
+
+	EdgesWeight randomGraph;
+
+	EdgesWeight edgesStore;
+	EdgeWeight tmp;
+	for (auto n = 0; n < size; n++)
+	{
+		for (auto m = n + 1; m < size; m++)
+		{
+			tmp.first = dis_weight(gen);
+			tmp.second.first = n;
+			tmp.second.second = m;
+			edgesStore.emplace_back(tmp);
+		}
+	}
+	int position;
+	for (auto i = 0; i < numEdges; i++)
+	{
+		position = dis(gen) % edgesStore.size();
+		randomGraph.emplace_back(edgesStore[position]);
+		std::swap(edgesStore[position], edgesStore[edgesStore.size() - 1]);
+		edgesStore.pop_back();
+	}
+	return randomGraph;
 }
 

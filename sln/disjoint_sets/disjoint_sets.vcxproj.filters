@@ -21,10 +21,13 @@
     <ClInclude Include="disjoint_sets.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="disjoint_sets_other.h">
+    <ClInclude Include="disjoint_sets_abstract.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="disjoint_sets_abstract.h">
+    <ClInclude Include="disjont_sets_array.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="disjoint_sets_tree.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,7 +35,10 @@
     <ClCompile Include="disjoint_sets.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="disjoint_sets_other.cpp">
+    <ClCompile Include="disjont_sets_array.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="disjoint_sets_tree.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>

@@ -132,12 +132,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="disjoint_sets.cpp" />
-    <ClCompile Include="disjoint_sets_other.cpp" />
+    <ClCompile Include="disjoint_sets_tree.cpp" />
+    <ClCompile Include="disjont_sets_array.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="disjoint_sets.h" />
     <ClInclude Include="disjoint_sets_abstract.h" />
-    <ClInclude Include="disjoint_sets_other.h" />
+    <ClInclude Include="disjoint_sets_tree.h" />
+    <ClInclude Include="disjont_sets_array.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

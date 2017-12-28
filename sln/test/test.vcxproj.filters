@@ -13,12 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы исходного кода\test disjoint sets">
+      <UniqueIdentifier>{9f4b10fb-a440-4071-960f-3620fcc9b463}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test_main.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="test_disjoint_set.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="test_graph_tree.cpp">
@@ -29,6 +29,15 @@
     </ClCompile>
     <ClCompile Include="test_algs_search_components.cpp">
       <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="test_disjoint_set_array.cpp">
+      <Filter>Файлы исходного кода\test disjoint sets</Filter>
+    </ClCompile>
+    <ClCompile Include="test_disjoint_set.cpp">
+      <Filter>Файлы исходного кода\test disjoint sets</Filter>
+    </ClCompile>
+    <ClCompile Include="test_disjoint_set_tree.cpp">
+      <Filter>Файлы исходного кода\test disjoint sets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

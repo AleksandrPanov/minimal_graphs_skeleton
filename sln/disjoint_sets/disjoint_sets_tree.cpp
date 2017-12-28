@@ -1,34 +1,6 @@
-#include "disjoint_sets_other.h"
-#include "disjoint_sets.h"
+#include "disjoint_sets_tree.h"
 #include <algorithm>
 using std::vector;
-DisjointSetArray::DisjointSetArray(int size)
-{
-	ar = vector<int>(size);
-	for (int i = 0; i < size; i++)
-		make_set(i);
-}
-
-void DisjointSetArray::make_set(int v)
-{
-	ar[v] = v;
-}
-
-int DisjointSetArray::find_set(int v)
-{
-	return ar[v];
-}
-
-void DisjointSetArray::union_sets(int a, int b)
-{
-	int c = std::min(a, b);
-	for (int i = 0; i < ar.size(); i++)
-	{
-		if (ar[i] == a || ar[i] == b)
-			ar[i] = c;
-	}
-}
-
 DisjointSetRank::DisjointSetRank(int size)
 {
 	tree = vector<node>(size);

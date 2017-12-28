@@ -144,9 +144,11 @@
   <ItemGroup>
     <ClCompile Include="test_algs.cpp" />
     <ClCompile Include="test_algs_search_components.cpp" />
+    <ClCompile Include="test_disjoint_set_array.cpp" />
     <ClCompile Include="test_disjoint_set.cpp" />
     <ClCompile Include="test_graph_tree.cpp" />
     <ClCompile Include="test_main.cpp" />
+    <ClCompile Include="test_disjoint_set_tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\gtest\gtest\gtest.vcxproj">

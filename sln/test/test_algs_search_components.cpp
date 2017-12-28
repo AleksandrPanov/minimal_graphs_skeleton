@@ -1,5 +1,7 @@
 #include "../../gtest/gtest/gtest.h"
 #include "../algs/algs/connected_component.h"
+#include "../graphs/graph.h"
+#include <iostream>
 using std::pair;
 using std::vector;
 typedef std::pair<int, int> Edge;
@@ -47,6 +49,33 @@ TEST(alg_connected_comp, bfs_is_right)
 	auto component2 = bfs(3, was, adjacencyList);
 	auto component3 = bfs(5, was, adjacencyList);
 	EXPECT_EQ(component1.size(), 3);
-	EXPECT_EQ(component2.size(), 1);
-	EXPECT_EQ(component3.size(), 1);
+	EXPECT_EQ(component2.size(), 2);
+	EXPECT_EQ(component3.size(), 2);
+}
+
+TEST(alg_connected_comp, connected_comp_is_right1)
+{
+	int n = 7;
+	auto g = getGraph1();
+	auto comps = getConnectedComponent(g, n);
+	EXPECT_EQ(comps.size(), 3);
+	for (auto &comp : comps)
+	{
+		Graph::printEdges(std::cout, comp);
+		std::cout << '\n';
+	}
+}
+
+TEST(alg_connected_comp, connected_comp_is_right2)
+{
+	int n = 7;
+	EdgesWeight g = getGraph1();
+	g.push_back(EdgeWeight(0, Edge(6, 3)));
+	auto comps = getConnectedComponent(g, n);
+	EXPECT_EQ(comps.size(), 2);
+	for (auto &comp : comps)
+	{
+		Graph::printEdges(std::cout, comp);
+		std::cout << '\n';
+	}
 }

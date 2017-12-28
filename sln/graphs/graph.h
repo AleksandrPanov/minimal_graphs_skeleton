@@ -1,7 +1,5 @@
 #pragma once
 #include <vector>
-
-typedef std::vector<std::pair<int, int>> Edges;
 typedef std::vector<std::pair<int, std::pair<int, int>>> EdgesWeight;
 
 class Graph
@@ -15,4 +13,5 @@ public:
 	static void printEdges(std::ofstream &of, EdgesWeight& edges);
 	static void printEdges(std::ostream &os, EdgesWeight& edges);
 	static int findWeight(EdgesWeight &edges);
+	static EdgesWeight getRandomGraph(int size, int numEdges, int minWeight, int maxWeight);
 };

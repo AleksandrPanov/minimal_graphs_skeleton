@@ -8,23 +8,21 @@ typedef pair<int, int> Edge;
 typedef pair<int, pair<int, int>> EdgeWeight;
 typedef pair<int, int> v2_w;
 
-EdgesWeight bfs(int v,vector<bool> &was, vector<vector<pair<int, int>>> &adjacencyList)
+std::vector<int> bfs(int v, Was &was, vector<vector<pair<int, int>>> &adjacencyList)
 {
-	EdgesWeight oneComponet;
+	std::vector<int> oneComponet;
 	was[v] = true;
-	vector<int> vers;
-	vers.push_back(v);
+	oneComponet.push_back(v);
 	int cur = 0;
-	while(cur < vers.size())
+	while(cur < oneComponet.size())
 	{
-		int v = vers[cur++];
+		int v = oneComponet[cur++];
 		for (v2_w &to : adjacencyList[v])
 		{
 			if (!was[to.first])
 			{
 				was[to.first] = true;
-				vers.push_back(to.first);
-				oneComponet.push_back(EdgeWeight(to.second, Edge(v, to.first)));
+				oneComponet.push_back(to.first);
 			}
 		}
 	}
@@ -35,22 +33,47 @@ void setAdjacencyList(vector<vector<pair<int, int>>> &adjacencyList, const Edges
 	adjacencyList = vector<vector<pair<int, int>>>(n);
 	for (auto &edge : edges)
 	{
-		adjacencyList[edge.v1].push_back(v2_w(edge.v2, edge.w));
-		adjacencyList[edge.v2].push_back(v2_w(edge.v1, edge.w));
+		adjacencyList[edge.v1].emplace_back(v2_w(edge.v2, edge.w));
+		adjacencyList[edge.v2].emplace_back(v2_w(edge.v1, edge.w));
 	}
 }
+
+EdgesWeight getEdgesOneComp(vector<int> &oneComp, vector<vector<pair<int, int>>> &adjacencyList, int n)
+{
+	EdgesWeight oneEdgesComp;
+	vector<vector<bool>> was(n);
+	for (int i = 0; i < n; i++)
+		was[i] = vector<bool>(n, false);
+	for (int ver1:oneComp)
+	{
+		for (auto ver2 : adjacencyList[ver1])
+		{
+			if (!was[ver1][ver2.first])
+			{
+				was[ver1][ver2.first] = true;
+				was[ver2.first][ver1] = true;
+				oneEdgesComp.emplace_back(EdgeWeight(ver2.second, Edge(ver1, ver2.first)));
+			}
+		}
+	}
+	return oneEdgesComp;
+}
+
 vector<EdgesWeight> getConnectedComponent(const EdgesWeight &edges, int n)
 {
 	vector<EdgesWeight> vecComponents;
 	vector<vector<pair<int, int>>> adjacencyList;
 	setAdjacencyList(adjacencyList, edges, n);
 	vector<bool> was(n, false);
+	vector <vector<bool>> wasEdge(n);
+	for (int i = 0; i < n; i++)
+		wasEdge[i] = vector<bool>(n, false);
 	for (int i = 0; i < n; i++)
 	{
 		if (!was[i])
 		{
 			auto comp = bfs(i, was, adjacencyList);
-			vecComponents.push_back(comp);
+			vecComponents.emplace_back(getEdgesOneComp(comp, adjacencyList, n));
 		}
 	}
 	vecComponents.shrink_to_fit();

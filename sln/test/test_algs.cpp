@@ -24,7 +24,7 @@ TEST(alg_kraskal, alg_kraskal_work1)
 {
 	int n;
 	auto graph = getGraph(n);
-	auto ansEdges = algKraskal(graph, n);
+	auto ansEdges = algKraskal(graph, n, TypeDisjointSet::tree_full_optimization);
 	Graph::printEdges(std::cout, ansEdges);
 	EXPECT_EQ(Graph::findWeight(ansEdges), 10);
 }
