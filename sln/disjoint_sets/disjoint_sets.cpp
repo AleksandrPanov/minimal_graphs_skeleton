@@ -24,7 +24,7 @@ int DisjointSet::find_set(int v)
 	return tree[v].parent = find_set(tree[v].parent);
 }
 
-void DisjointSet::union_sets(int a, int b)
+bool DisjointSet::union_sets(int a, int b)
 {
 	a = find_set(a);
 	b = find_set(b);
@@ -36,5 +36,7 @@ void DisjointSet::union_sets(int a, int b)
 		tree[b].parent = a;
 		if (tree[a].rank == tree[b].rank)
 			++tree[a].rank;
+		return true;
 	}
+	return false;
 }

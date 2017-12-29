@@ -13,7 +13,7 @@ using std::pair;
 typedef std::pair<int, int> Edge;
 typedef std::pair<int, std::pair<int, int>> EdgeWeight;
 
-EdgesWeight algKraskal(EdgesWeight edges, int n, TypeDisjointSet choise)
+EdgesWeight algKraskal(EdgesWeight &edges, int n, TypeDisjointSet choise)
 {
 	AbstractDisjointSet *set;
 	if (choise == TypeDisjointSet::array)

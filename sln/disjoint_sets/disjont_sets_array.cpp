@@ -25,11 +25,11 @@ int DisjointSetArray::find_set(int v)
 	return ar[v];
 }
 
-void DisjointSetArray::union_sets(int a, int b)
+bool DisjointSetArray::union_sets(int a, int b)
 {
 	a = find_set(a);
 	b = find_set(b);
-	if (a == b) return;
+	if (a == b) return false;
 	numSet--;
 	int c = std::min(a, b);
 	for (int i = 0; i < ar.size(); i++)
@@ -39,4 +39,5 @@ void DisjointSetArray::union_sets(int a, int b)
 			ar[i] = c;
 		}
 	}
+	return true;
 }

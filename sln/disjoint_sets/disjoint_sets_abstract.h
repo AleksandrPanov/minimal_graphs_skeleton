@@ -16,5 +16,5 @@ public:
 	int getNumSet() { return numSet; };
 	virtual void make_set(int v) = 0;
 	virtual int find_set(int v) = 0;
-	virtual void union_sets(int a, int b) = 0;
+	virtual bool union_sets(int a, int b) = 0;
 };

@@ -11,35 +11,41 @@ typedef std::pair<int, std::pair<int, int>> EdgeWeight;
 #define w first
 
 const int INF = 1000000000;
-EdgesWeight algBoroute(EdgesWeight & edges, int n)
+EdgesWeight algBoroute(const EdgesWeight & edges, int n)
 {
 	DisjointSet set(n);
+	int tmp;
 	EdgesWeight result;
 	result.reserve(n - 1);
 	const EdgeWeight emptyEdge = EdgeWeight(INF, Edge(-1, -1));
 	EdgesWeight minEdges(n, emptyEdge);
 	while (1)
 	{
+		tmp = set.getNumSet();
 		for (auto& edge : edges)
 		{
-			if (set.find_set(edge.v1) != set.find_set(edge.v2))
+			int set1 = set.find_set(edge.v1), set2 = set.find_set(edge.v2);
+			if (set1 != set2)
 			{
-				minEdges[edge.v1] = std::min(minEdges[edge.v1], edge);
-				minEdges[edge.v2] = std::min(minEdges[edge.v2], edge);
+				minEdges[set1] = std::min(minEdges[set1], edge);
+				minEdges[set2] = std::min(minEdges[set2], edge);
 			}
 		}
 		for (auto edge : minEdges)
 		{
 			if (edge.w != INF)
 			{
-				set.union_sets(edge.v1, edge.v2);
-				result.push_back(edge);
-				minEdges[edge.v1] = emptyEdge;
-				minEdges[edge.v2] = emptyEdge;
-				if (set.getNumSet() == 1)
-					return result;
+				int set1 = set.find_set(edge.v1), set2 = set.find_set(edge.v2);
+				if (set.union_sets(set1, set2))
+				{
+					minEdges[set1] = emptyEdge;
+					minEdges[set2] = emptyEdge;
+					result.push_back(edge);
+				}
 			}
 		}
+		if (set.getNumSet() == tmp)
+			return result;
 	}
 	return result;
 }

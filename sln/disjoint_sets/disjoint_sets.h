@@ -11,5 +11,5 @@ public:
 	int getSize() { return tree.size(); }
 	void make_set(int v);
 	int find_set(int v);
-	void union_sets(int a, int b);	
+	bool union_sets(int a, int b);	
 };

@@ -73,7 +73,11 @@ vector<EdgesWeight> getConnectedComponent(const EdgesWeight &edges, int n)
 		if (!was[i])
 		{
 			auto comp = bfs(i, was, adjacencyList);
-			vecComponents.emplace_back(getEdgesOneComp(comp, adjacencyList, n));
+			auto edgesComp = getEdgesOneComp(comp, adjacencyList, n);
+			if (edgesComp.size() != 0)
+			{
+				vecComponents.emplace_back(edgesComp);
+			}
 		}
 	}
 	vecComponents.shrink_to_fit();

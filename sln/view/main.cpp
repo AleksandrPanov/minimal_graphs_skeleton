@@ -7,6 +7,8 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <algorithm>
 using std::vector;
 using std::cout;
 using std::cin;
@@ -14,7 +16,8 @@ using std::string;
 int main()
 {
 	string menu = "1 start all algorithms\n2 start Kruskal's algoritm\n";
-	menu +="3 start Prim's algoritm\n4 start Boroute's algoritm\n5 set graph\n0 exit\n";
+	menu += "3 start Prim's algoritm\n4 start Boroute's algoritm\n5 set graph\n";
+	menu += "6 print graph\n0 exit\n";
 	string choise;
 	int numV = 0, numE = 0, minW = 1, maxW = 1000;
 	vector<EdgesWeight> graph;
@@ -29,28 +32,40 @@ int main()
 		if (choise == "0") break;
 		else if (choise == "1")
 		{
-			double start = 0;
-			cout << "running Kruskal's algoritm\n";
-			for (auto& comp : graph)
+			EdgesWeight result;
+			double start_time, end_time, finish_time = 0;
+			cout << "number of connected components = " << graph.size()<<"\n";
+			cout << "running Boroute's algoritm\n";
+			start_time = clock();
+			for (int i = 0; i < graph.size(); i++)
 			{
-				algKraskal(comp, numV, TypeDisjointSet::tree_full_optimization);
+				result = algBoroute(graph[i], numV);
 			}
-			cout << "final Kruskal's algoritm\n";
-		    
+			end_time = clock();
+			cout << "final Boroute's algoritm, time = " << (end_time - start_time) / CLOCKS_PER_SEC <<" , weight = " << Graph::findWeight(result) << "\n";
+
 			cout << "running Prim's algoritm\n";
+			start_time = clock();
 			for (auto comp : graph)
 			{
 				auto adjacencyMatrix = Graph::getAdjacencyMatrixFromEdges(comp, numV);
-				algPrima(adjacencyMatrix, numV);
+				start_time = clock();
+				result = algPrima(adjacencyMatrix, numV);
+				end_time = clock();
+				finish_time += (end_time - start_time);
 			}
-			cout << "final Prim's algoritm\n";
+			end_time = clock();
+			cout << "final Prim's algoritm, time = " << finish_time / CLOCKS_PER_SEC << " , weight = " << Graph::findWeight(result) << "\n";
 
-			cout << "running Boroute's algoritm\n";
+			cout << "running Kruskal's algoritm\n";
+			start_time = clock();
 			for (auto& comp : graph)
 			{
-				algBoroute(comp, numV);
+				result = algKraskal(comp, numV, TypeDisjointSet::tree_full_optimization);
 			}
-			cout << "final Boroute's algoritm\n";
+			end_time = clock();
+			cout << "final Kruskal's algoritm, time = " << (end_time - start_time) / CLOCKS_PER_SEC << " , weight = " << Graph::findWeight(result) <<  "\n";
+
 			cin >> choise;
 		}
 		else if (choise == "5")
@@ -62,19 +77,19 @@ int main()
 			cin >> choise;
 			if (choise == "1")
 			{
-				numE = (numV*numV) / 4;
+				numE = std::min(numV*numV / 4, numV*(numV - 1) / 2);
 			}
 			else if (choise == "2")
 			{
-				numE = (numV*numV) / log(numV);
+				numE = std::min( (int)(numV*numV / log(numV)), numV*(numV - 1) / 2);
 			}
 			else if (choise == "3")
 			{
-				numE = 2 * numV;
+				numE = std::min(2 * numV, numV*(numV-1)/2);
 			}
 			else if (choise == "4")
 			{
-				numE = 5 * numV;
+				numE = std::min(5 * numV, numV*(numV - 1) / 2);
 			}
 			else
 			{
@@ -84,6 +99,15 @@ int main()
 			EdgesWeight tmpGraph;
 			tmpGraph = Graph::getRandomGraph(numV, numE, minW, maxW);
 			graph = getConnectedComponent(tmpGraph, numV);
+		}
+		else if (choise == "6")
+		{
+			for (auto& comp : graph)
+			{
+				Graph::printEdges(cout, comp);
+				cout << '\n';
+			}
+			cin >> choise;
 		}
 		system("cls");
 	}
