@@ -70,13 +70,24 @@ int main()
 		}
 		else if (choice == "2")
 		{
+			TypeDisjointSet typeOfSet = TypeDisjointSet::tree_full_optimization;
+			cout << "print type of disjoint sets: \n1 array \n2 tree with rank optimization \n3 tree with full optimization\n";
+			cin >> choice;
+			if (choice == "1")
+			{
+				typeOfSet = TypeDisjointSet::array;
+			}
+			else if (choice == "2")
+			{
+				typeOfSet = TypeDisjointSet::tree_rank;
+			}
 			EdgesWeight result;
 			cout << "number of connected components = " << graph.size() << "\n";
 			cout << "running Kruskal's algoritm\n";
 			start_time = clock();
 			for (auto& comp : graph)
 			{
-				result = algKraskal(comp, numV, TypeDisjointSet::tree_full_optimization);
+				result = algKraskal(comp, numV, typeOfSet);
 			}
 			end_time = clock();
 			cout << "final Kruskal's algoritm, time = " << (end_time - start_time) / CLOCKS_PER_SEC << " , weight = " << Graph::findWeight(result) << "\n";
